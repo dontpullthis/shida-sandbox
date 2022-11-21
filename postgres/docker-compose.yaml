@@ -1,0 +1,14 @@
+version: '3'
+services:
+    postgres:
+        image: postgres:15.1-alpine3.16
+        environment:
+            POSTGRES_DB: sample_postgres_db
+            POSTGRES_USER: pguser
+            POSTGRES_PASSWORD: "pgpwd"
+        ports:
+            - 5432:5432
+        network_mode: bridge
+        volumes:
+            - "../.volumes/postgres/datadir:/var/lib/postgresql/data"
+            - "../postgres/sample_data:/docker-entrypoint-initdb.d"
